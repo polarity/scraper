@@ -7,7 +7,6 @@ var utf8 = require('utf8');
 var app     = express();
 
 app.get('/scrape', function(req, res){
-    console.log('Request:',req.query);
     if(req.query.url){
         url = req.query.url;
     } else {
@@ -45,12 +44,11 @@ app.get('/scrape', function(req, res){
                 'Nachfüllbar',
                 'EAN-Code']}, function(err, csv){
                 res.charset = 'utf-8';
-                res.send('<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><form action="?" method="get"><input name="url" type="text" value="'+url+'"><input type="submit"></form><textarea cols="200" rows="10">'+csv+'</textarea>'.toString('utf8'));
+                res.send('<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head><form action="?" method="get"><input name="url" type="text" value="'+url+'" style="width: 500px;"><input type="submit"></form><textarea cols="200" rows="10">'+csv+'</textarea>'.toString('utf8'));
             });
 		}
 	});
 });
 
 app.listen('64166');
-console.log('port 64166');
 exports = module.exports = app;
